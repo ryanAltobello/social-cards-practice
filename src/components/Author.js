@@ -1,12 +1,7 @@
 import React from "react";
 
-const Author = () => {
-  return (
-    <div className="right floated author">
-      <img className="ui avatar image" src="" />
-      Author
-    </div>
-  );
+const Author = props => {
+  return <div className="right floated author">{props.name}</div>;
 };
 
 export default Author;

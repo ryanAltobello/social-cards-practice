@@ -1,9 +1,9 @@
 import React from "react";
 
-const Body = () => {
+const Body = props => {
   return (
     <div className="description">
-      <p>Body</p>
+      <p>{props.text}</p>
     </div>
   );
 };

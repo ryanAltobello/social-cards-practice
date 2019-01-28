@@ -1,9 +1,9 @@
 import React from "react";
 
-const Email = () => {
+const Email = props => {
   return (
     <div className="meta">
-      <span className="category">email@email.com</span>
+      <span className="category">{props.email}</span>
     </div>
   );
 };
