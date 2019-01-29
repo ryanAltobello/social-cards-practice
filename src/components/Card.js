@@ -5,7 +5,7 @@ import Body from "./Body";
 import Author from "./Author";
 import NewHeader from "./NewHeader";
 import NewBody from "./NewBody";
-import Avatar from "./Avatar";
+import Avatar from "./NewAvatar";
 
 import jsonPlaceholder from "../apis/jsonPlaceholder";
 import randomUser from "../apis/randomUser";
@@ -14,17 +14,14 @@ class Card extends React.Component {
   state = { jsonData: [], randomUserData: [] };
   componentDidMount() {
     this.fetchJson();
+
+    // API has to be called separately for each user (3)
     this.fetchRandomUser();
     this.fetchRandomUser();
     this.fetchRandomUser();
   }
 
-  async fetchRandomUser() {
-    const randomUserResponse = await randomUser.get();
-    let user = randomUserResponse.data.results;
-    this.setState({ randomUserData: [...this.state.randomUserData, user] });
-  }
-
+  // ---------- FIRST SET OF CARDS ---------- //
   async fetchJson() {
     const jsonBodyText = await jsonPlaceholder.get("/comments");
     const jsonUserInfo = await jsonPlaceholder.get("/users");
@@ -35,6 +32,7 @@ class Card extends React.Component {
     for (let i = 0; i < 3; i++) {
       bodyText.push(jsonBodyText.data[i]);
       for (let j = 0; j < 10; j++) {
+        // Matching comment userIDs from first JSON call ("/comments") to the user info from second JSON call ("/users")
         if (bodyText[i].id === idArray[i].id) {
           bodyText[i]["username"] = idArray[i].username;
           bodyText[i]["name"] = idArray[i].name;
@@ -45,12 +43,20 @@ class Card extends React.Component {
     this.setState({ jsonData: bodyText });
   }
 
+  // ---------- SECOND SET OF CARDS ---------- //
+  async fetchRandomUser() {
+    const randomUserResponse = await randomUser.get();
+    let user = randomUserResponse.data.results;
+    this.setState({ randomUserData: [...this.state.randomUserData, user] });
+  }
+
   renderCard() {
     if (!this.state) {
       return <div>Loading...</div>;
     } else {
       return (
         <div className="ui raised cards">
+          {/* Rendering the first 3 cards from JSON API */}
           {this.state.jsonData.map(data => (
             <div className="ui card">
               <div className="content">
@@ -63,6 +69,7 @@ class Card extends React.Component {
               </div>
             </div>
           ))}
+          {/* Rendering the second 3 cards from RandomUser API */}
           {this.state.randomUserData.map(user => (
             <div className="ui card">
               <div className="content">
