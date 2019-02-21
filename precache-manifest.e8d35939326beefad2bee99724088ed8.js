@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/social-cards-practice/static/js/2.9428879d.chunk.js"
   },
   {
-    "revision": "97224451215b5530e4059c077ee157e4",
+    "revision": "c4013fb323df14deaaed095a4ca8bba1",
     "url": "/social-cards-practice/index.html"
   }
 ];

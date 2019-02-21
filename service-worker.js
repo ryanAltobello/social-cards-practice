@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/social-cards-practice/precache-manifest.13f562189a36ec9ca4e8d8d1c64f76b1.js"
+  "/social-cards-practice/precache-manifest.e8d35939326beefad2bee99724088ed8.js"
 );
 
 workbox.clientsClaim();
